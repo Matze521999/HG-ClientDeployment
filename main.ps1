@@ -1,3 +1,41 @@
+# Funktion zum Aktualisieren der CLI
+function Refresh-CLI {
+    Clear-Host
+    Write-Host -ForegroundColor $status1Color "[1] [$status1] Install 7Zip"
+    Write-Host -ForegroundColor $status2Color "[2] [$status2] Install AdobeReaderDC"
+    Write-Host -ForegroundColor $status3Color "[3] [$status3] Install OpenVPN"
+    Write-Host -ForegroundColor $status4Color "[4] [$status4] Install Google Chrome"
+    Write-Host -ForegroundColor $status5Color "[5] [$status5] Install Mozilla Firefox"
+    Write-Host -ForegroundColor $status6Color "[6] [$status6] Install HGFernwartung"
+    Write-Host -ForegroundColor $status7Color "[7] [$status7] Install ServerEye (Download only)"
+    Write-Host -ForegroundColor $status8Color "[8] [$status8] Set OEM-Information"
+    Write-Host -ForegroundColor $status9Color "[9] [$status9] Start Windows-Updates"
+}
+
+# Startstatus und -farbe für jeden Punkt
+$status1 = "AKTIV"
+$status2 = "AKTIV"
+$status3 = "INAKTIV"
+$status4 = "AKTIV"
+$status5 = "INAKTIV"
+$status6 = "AKTIV"
+$status7 = "INAKTIV"
+$status8 = "AKTIV"
+$status9 = "AKTIV"
+
+$status1Color = "Green"
+$status2Color = "Green"
+$status3Color = "Red"
+$status4Color = "Green"
+$status5Color = "Red"
+$status6Color = "Green"
+$status7Color = "Red"
+$status8Color = "Green"
+$status9Color = "Green"
+
+# Aktualisiere die CLI
+Refresh-CLI
+
 # Funktion zum Starten des ausgewählten Punktes
 function Start-Point {
     param(
@@ -27,30 +65,6 @@ function Start-Point {
         Remove-Item "$env:TEMP\Script.ps1"
     }
 }
-
-# Startstatus und -farbe für jeden Punkt
-$status1 = "AKTIV"
-$status2 = "AKTIV"
-$status3 = "INAKTIV"
-$status4 = "AKTIV"
-$status5 = "INAKTIV"
-$status6 = "AKTIV"
-$status7 = "INAKTIV"
-$status8 = "AKTIV"
-$status9 = "AKTIV"
-
-$status1Color = "Green"
-$status2Color = "Green"
-$status3Color = "Red"
-$status4Color = "Green"
-$status5Color = "Red"
-$status6Color = "Green"
-$status7Color = "Red"
-$status8Color = "Green"
-$status9Color = "Green"
-
-# Aktualisiere die CLI
-Refresh-CLI
 
 while ($true) {
     $key = $Host.UI.RawUI.ReadKey("IncludeKeyDown,NoEcho")
