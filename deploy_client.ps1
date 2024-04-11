@@ -3,6 +3,8 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     exit 
 }
 
+set-executionpolicy remotesigned
+
 $url = "https://raw.githubusercontent.com/Matze521999/HG-ClientDeployment/main/main.ps1"
 $localPath = "$env:TEMP\main.ps1"
 Invoke-WebRequest -Uri $url -OutFile $localPath
