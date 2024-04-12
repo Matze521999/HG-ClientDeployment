@@ -5,7 +5,7 @@ function Start-WindowsUpdates {
         Write-Output "$(Get-Date) - Windows Update-Dienst wurde gestartet." | Out-File -Append -FilePath $env:TEMP\log.txt
 
         # Starten der Suche nach Updates
-        Write-Host "Suche nach verfügbaren Windows-Updates..."
+        Write-Host "Suche nach verfuegbaren Windows-Updates..."
         $SearchResult = (New-Object -ComObject Microsoft.Update.Session).CreateUpdateSearcher().Search($null).Updates
 
         # Überprüfen, ob Updates gefunden wurden
