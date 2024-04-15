@@ -54,7 +54,7 @@ function ExecuteSelectedScripts {
         $scriptURL = "https://raw.githubusercontent.com/Matze521999/HG-ClientDeployment/main/" + $scriptName
         $scriptPath = Join-Path -Path $env:TEMP -ChildPath $scriptName
         if (Test-Path $scriptPath) {
-            Write-Host "Führe Skript $scriptName aus..." -ForegroundColor Cyan
+            Write-Host "Fuehre Skript $scriptName aus..." -ForegroundColor Cyan
             . $scriptPath
             Remove-Item $scriptPath
         } else {
@@ -72,13 +72,13 @@ while ($true) {
     $key = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown").VirtualKeyCode
     if ($key -eq 89) { # Y-Key
         ExecuteSelectedScripts
-        Write-Host "Drücke eine beliebige Taste, um fortzufahren..."
+        Write-Host "Druecke eine beliebige Taste, um fortzufahren..."
         $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
         break
     } elseif ($key -ge 49 -and $key -le 57) { # Zahlen 1 bis 9
         $index = $key - 48  # 48 ist der ASCII-Wert von '0'
         ToggleOption $index
     } else {
-        Write-Host "`nUngültige Eingabe. Bitte wähle eine Option aus dem Menü oder drücke 'y' zum Bestätigen." -ForegroundColor Yellow
+        Write-Host "`nUngueltige Eingabe. Bitte wähle eine Option aus dem Menue oder druecke 'y' zum Bestaetigen." -ForegroundColor Yellow
     }
 }
