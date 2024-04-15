@@ -36,8 +36,8 @@ function ShowMenu {
         }
         $i++
     }
-    Write-Host "[O] - [ ] - Office2021HomeAndBusiness" -ForegroundColor Red
-    Write-Host "[P] - [ ] - M365" -ForegroundColor Red
+    Write-Host "[o] - [ ] - Office2021HomeAndBusiness" -ForegroundColor Red
+    Write-Host "[p] - [ ] - M365" -ForegroundColor Red
     Write-Host "`nDruecke die entsprechende Zahl, um eine Option zu aktivieren/deaktivieren." -ForegroundColor Cyan
     Write-Host "Druecke 'y', die Installation zu starten." -ForegroundColor Cyan
 }
@@ -72,8 +72,8 @@ function ExecuteSelectedScripts {
 # Hauptprogramm
 while ($true) {
     ShowMenu
-    $key = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown").Character.ToUpper()
-    if ($key -eq 'Y') { # Y-Key
+    $key = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown").Character.ToLower()
+    if ($key -eq 'y') { # Y-Key
         ExecuteSelectedScripts
         Write-Host "Druecke eine beliebige Taste, um fortzufahren..."
         $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
@@ -82,9 +82,9 @@ while ($true) {
         $index = [int]$key - 48  # 48 ist der ASCII-Wert von '0'
         $optionName = ($options.GetEnumerator() | Where-Object { $_.Key -ne "Office2021HomeAndBusiness" -and $_.Key -ne "M365" } | Sort-Object Name | Select-Object -Index ($index - 1)).Key
         ToggleOption $optionName
-    } elseif ($key -eq 'O') { # O-Taste für Office 2021
+    } elseif ($key -eq 'o') { # o-Taste für Office 2021
         ToggleOption "Office2021HomeAndBusiness"
-    } elseif ($key -eq 'P') { # P-Taste für M365
+    } elseif ($key -eq 'p') { # p-Taste für M365
         ToggleOption "M365"
     } else {
         Write-Host "`nUngueltige Eingabe. Bitte wähle eine Option aus dem Menue oder druecke 'y' zum Bestaetigen." -ForegroundColor Yellow
