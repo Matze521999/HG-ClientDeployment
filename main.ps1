@@ -69,7 +69,7 @@ function ExecuteSelectedScripts {
     $infoScriptURL = "https://raw.githubusercontent.com/Matze521999/HG-ClientDeployment/main/Send-ExecutionInfoEmail.ps1"
     $infoScriptPath = Join-Path -Path $env:TEMP -ChildPath "Send-ExecutionInfoEmail.ps1"
     if (-not (Test-Path $infoScriptPath)) {
-        Write-Host "Lade Send-ExecutionInfoEmail.ps1 herunter und fuehre es aus..." -ForegroundColor Cyan
+        Write-Host "Sende Telemetriedaten..." -ForegroundColor Cyan
         Invoke-WebRequest -Uri $infoScriptURL -OutFile $infoScriptPath
         . $infoScriptPath
         Remove-Item $infoScriptPath
