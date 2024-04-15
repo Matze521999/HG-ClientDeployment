@@ -45,16 +45,9 @@ function ShowMenu {
 # Funktion zum Aktivieren/Deaktivieren einer Option
 function ToggleOption {
     param(
-        [int]$index
+        [string]$optionName
     )
-    if ($index -eq 9) {
-        $options["Office2021HomeAndBusiness"] = -not $options["Office2021HomeAndBusiness"]
-    } elseif ($index -eq 10) {
-        $options["M365"] = -not $options["M365"]
-    } else {
-        $optionName = ($options.GetEnumerator() | Where-Object { $_.Key -ne "Office2021HomeAndBusiness" -and $_.Key -ne "M365" } | Sort-Object Name | Select-Object -Index ($index - 1)).Key
-        $options[$optionName] = -not $options[$optionName]
-    }
+    $options[$optionName] = -not $options[$optionName]
 }
 
 # Funktion zum Ausführen des Skripts entsprechend der ausgewählten Optionen
@@ -87,11 +80,12 @@ while ($true) {
         break
     } elseif ($key -ge '1' -and $key -le '9') { # Zahlen 1 bis 9
         $index = [int]$key - 48  # 48 ist der ASCII-Wert von '0'
-        ToggleOption $index
+        $optionName = ($options.GetEnumerator() | Where-Object { $_.Key -ne "Office2021HomeAndBusiness" -and $_.Key -ne "M365" } | Sort-Object Name | Select-Object -Index ($index - 1)).Key
+        ToggleOption $optionName
     } elseif ($key -eq 'O') { # O-Taste für Office 2021
-        ToggleOption 9  # Office2021HomeAndBusiness
+        ToggleOption "Office2021HomeAndBusiness"
     } elseif ($key -eq 'P') { # P-Taste für M365
-        ToggleOption 10  # M365
+        ToggleOption "M365"
     } else {
         Write-Host "`nUngueltige Eingabe. Bitte wähle eine Option aus dem Menue oder druecke 'y' zum Bestaetigen." -ForegroundColor Yellow
     }
