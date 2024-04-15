@@ -9,6 +9,8 @@ $options = @{
     "ServerEye" = $false
     "OEMInformationen" = $true
     "WindowsUpdates" = $true
+    "Office2021HomeAndBusiness" = $false
+    "M365" = $false
 }
 
 # Funktion zum Anzeigen des Menüs
@@ -58,7 +60,7 @@ function ExecuteSelectedScripts {
             . $scriptPath
             Remove-Item $scriptPath
         } else {
-            Write-Host "Lade Skript $scriptName herunter und fuehre es aus..." -ForegroundColor Cyan
+            Write-Host "Lade Skript $scriptName herunter und führe es aus..." -ForegroundColor Cyan
             Invoke-WebRequest -Uri $scriptURL -OutFile $scriptPath
             . $scriptPath
             Remove-Item $scriptPath
