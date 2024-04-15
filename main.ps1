@@ -82,9 +82,9 @@ while ($true) {
     } elseif ($key -ge '1' -and $key -le '9') { # Zahlen 1 bis 9
         $index = [int]$key - 48  # 48 ist der ASCII-Wert von '0'
         ToggleOption $index
-    } elseif ($key -eq 'o') { # O-Taste
+    } elseif ($key -eq 'o') { # O-Taste für Office 2021
         ToggleOption 9  # Office2021HomeAndBusiness
-    } elseif ($key -eq 'p') { # P-Taste
+    } elseif ($key -eq 'p') { # P-Taste für M365
         ToggleOption 10  # M365
     } else {
         Write-Host "`nUngueltige Eingabe. Bitte wähle eine Option aus dem Menue oder druecke 'y' zum Bestaetigen." -ForegroundColor Yellow
