@@ -21,7 +21,7 @@ function ShowMenu {
     Write-Host "*   |  _  || | __ | |    | | | |  | |     *"
     Write-Host "*   | | | || |_\ \| \__/\| |/ /   | |     *"
     Write-Host "*   \_| |_/ \____/ \____/|___/    \_/     *"
-    Write-Host "*                                         *"
+    Write-Host "*             pimemml                            *"
     Write-Host "*        v5.4          (C) Matze, 2024    *"
     Write-Host "*******************************************`n"
 
