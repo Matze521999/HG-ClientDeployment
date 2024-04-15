@@ -8,8 +8,6 @@ $options = @{
     "HGFernwartung" = $true
     "ServerEye" = $false
     "OEMInformationen" = $true
-    "Office2021HomeAndBusiness" = $false
-    "M365" = $false
     "WindowsUpdates" = $true
 }
 
@@ -28,7 +26,7 @@ function ShowMenu {
     Write-Host "*******************************************`n"
 
     $i = 1
-    foreach ($option in $options.GetEnumerator() | Where-Object { $_.Key -ne "Office2021HomeAndBusiness" -and $_.Key -ne "M365" } | Sort-Object Name) {
+    foreach ($option in $options.GetEnumerator() | Sort-Object Name) {
         if ($option.Value) {
             Write-Host "[$i] - [X] - $($option.Key)" -ForegroundColor Green
         } else {
@@ -36,8 +34,6 @@ function ShowMenu {
         }
         $i++
     }
-    Write-Host "[o] - [ ] - Office2021HomeAndBusiness" -ForegroundColor Red
-    Write-Host "[p] - [ ] - M365" -ForegroundColor Red
     Write-Host "`nDruecke die entsprechende Zahl, um eine Option zu aktivieren/deaktivieren." -ForegroundColor Cyan
     Write-Host "Druecke 'y', die Installation zu starten." -ForegroundColor Cyan
 }
@@ -45,8 +41,9 @@ function ShowMenu {
 # Funktion zum Aktivieren/Deaktivieren einer Option
 function ToggleOption {
     param(
-        [string]$optionName
+        [int]$index
     )
+    $optionName = ($options.GetEnumerator() | Sort-Object Name | Select-Object -Index ($index - 1)).Key
     $options[$optionName] = -not $options[$optionName]
 }
 
@@ -72,20 +69,15 @@ function ExecuteSelectedScripts {
 # Hauptprogramm
 while ($true) {
     ShowMenu
-    $key = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown").Character.ToLower()
-    if ($key -eq 'y') { # Y-Key
+    $key = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown").VirtualKeyCode
+    if ($key -eq 89) { # Y-Key
         ExecuteSelectedScripts
         Write-Host "Druecke eine beliebige Taste, um fortzufahren..."
         $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
         break
-    } elseif ($key -ge '1' -and $key -le '9') { # Zahlen 1 bis 9
-        $index = [int]$key - 48  # 48 ist der ASCII-Wert von '0'
-        $optionName = ($options.GetEnumerator() | Where-Object { $_.Key -ne "Office2021HomeAndBusiness" -and $_.Key -ne "M365" } | Sort-Object Name | Select-Object -Index ($index - 1)).Key
-        ToggleOption $optionName
-    } elseif ($key -eq 'o') { # o-Taste für Office 2021
-        ToggleOption "Office2021HomeAndBusiness"
-    } elseif ($key -eq 'p') { # p-Taste für M365
-        ToggleOption "M365"
+    } elseif ($key -ge 49 -and $key -le 57) { # Zahlen 1 bis 9
+        $index = $key - 48  # 48 ist der ASCII-Wert von '0'
+        ToggleOption $index
     } else {
         Write-Host "`nUngueltige Eingabe. Bitte wähle eine Option aus dem Menue oder druecke 'y' zum Bestaetigen." -ForegroundColor Yellow
     }
