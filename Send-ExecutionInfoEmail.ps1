@@ -19,7 +19,7 @@ function Send-ExecutionInfoEmail {
         From = "dittrich@helpme.de"
         To = "dittrich@helpme.de"
         Subject = "Installationsscript wurde verwendet!"
-        Body = "Das Installationsscript wurde am $CurrentTime unter dem Benutzer $CurrentUserName auf dem System $SystemName mit der öffentlichen IP $PublicIP ausgeführt."
+        Body = "Das Installationsscript wurde am $CurrentTime unter dem Benutzer $CurrentUserName auf dem System $SystemName mit der oeffentlichen IP $PublicIP ausgefuehrt."
     }
 
     Send-MailMessage @EmailParams
