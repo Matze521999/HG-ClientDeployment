@@ -8,9 +8,9 @@ $options = @{
     "HGFernwartung" = $true
     "ServerEye" = $false
     "OEMInformationen" = $true
-    "WindowsUpdates" = $true
     "Office2021HomeAndBusiness" = $false
     "M365" = $false
+    "WindowsUpdates" = $true
 }
 
 # Funktion zum Anzeigen des Menüs
@@ -47,8 +47,14 @@ function ToggleOption {
     param(
         [int]$index
     )
-    $optionName = ($options.GetEnumerator() | Where-Object { $_.Key -ne "Office2021HomeAndBusiness" -and $_.Key -ne "M365" } | Sort-Object Name | Select-Object -Index ($index - 1)).Key
-    $options[$optionName] = -not $options[$optionName]
+    if ($index -eq 9) {
+        $options["Office2021HomeAndBusiness"] = -not $options["Office2021HomeAndBusiness"]
+    } elseif ($index -eq 10) {
+        $options["M365"] = -not $options["M365"]
+    } else {
+        $optionName = ($options.GetEnumerator() | Where-Object { $_.Key -ne "Office2021HomeAndBusiness" -and $_.Key -ne "M365" } | Sort-Object Name | Select-Object -Index ($index - 1)).Key
+        $options[$optionName] = -not $options[$optionName]
+    }
 }
 
 # Funktion zum Ausführen des Skripts entsprechend der ausgewählten Optionen
@@ -73,8 +79,8 @@ function ExecuteSelectedScripts {
 # Hauptprogramm
 while ($true) {
     ShowMenu
-    $key = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown").Character
-    if ($key -eq 'y') { # Y-Key
+    $key = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown").Character.ToUpper()
+    if ($key -eq 'Y') { # Y-Key
         ExecuteSelectedScripts
         Write-Host "Druecke eine beliebige Taste, um fortzufahren..."
         $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
@@ -82,9 +88,9 @@ while ($true) {
     } elseif ($key -ge '1' -and $key -le '9') { # Zahlen 1 bis 9
         $index = [int]$key - 48  # 48 ist der ASCII-Wert von '0'
         ToggleOption $index
-    } elseif ($key -eq 'o') { # O-Taste für Office 2021
+    } elseif ($key -eq 'O') { # O-Taste für Office 2021
         ToggleOption 9  # Office2021HomeAndBusiness
-    } elseif ($key -eq 'p') { # P-Taste für M365
+    } elseif ($key -eq 'P') { # P-Taste für M365
         ToggleOption 10  # M365
     } else {
         Write-Host "`nUngueltige Eingabe. Bitte wähle eine Option aus dem Menue oder druecke 'y' zum Bestaetigen." -ForegroundColor Yellow
