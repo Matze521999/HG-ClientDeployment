@@ -58,7 +58,7 @@ function ExecuteSelectedScripts {
             . $scriptPath
             Remove-Item $scriptPath
         } else {
-            Write-Host "Lade Skript $scriptName herunter und führe es aus..." -ForegroundColor Cyan
+            Write-Host "Lade Skript $scriptName herunter und fuehre es aus..." -ForegroundColor Cyan
             Invoke-WebRequest -Uri $scriptURL -OutFile $scriptPath
             . $scriptPath
             Remove-Item $scriptPath
