@@ -34,8 +34,8 @@ function ShowMenu {
         }
         $i++
     }
-    Write-Host "`nDrücke die entsprechende Zahl, um eine Option zu aktivieren/deaktivieren." -ForegroundColor Cyan
-    Write-Host "Drücke 'y', um die ausgewählten Optionen als Parameter zu bestätigen." -ForegroundColor Cyan
+    Write-Host "`nDruecke die entsprechende Zahl, um eine Option zu aktivieren/deaktivieren." -ForegroundColor Cyan
+    Write-Host "Druecke 'y', die Installation zu starten." -ForegroundColor Cyan
 }
 
 # Funktion zum Aktivieren/Deaktivieren einer Option
