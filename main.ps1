@@ -8,7 +8,7 @@ $options = @{
     "HGFernwartung" = $true
     "ServerEye" = $false
     "OEMInformationen" = $true
-    "WindowsUpdates" = $true
+    "WindowsUpdates" = $false
 }
 
 # Funktion zum Anzeigen des Menüs
