@@ -7,8 +7,8 @@ function Send-ExecutionInfoEmail {
     $SystemName = $env:COMPUTERNAME
 
     # Anmeldeinformationen dekodieren
-    $Username = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("cGNoMXAx"))
-    $Password = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("dHJ1c3Q4MA=="))
+    $Username = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("xxx"))
+    $Password = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("xxx"))
 
     # E-Mail-Parameter konfigurieren
     $EmailParams = @{
