@@ -10,7 +10,7 @@ function Set-OEMInformation {
 
     $KeyNames = ("Manufacturer","SupportHours","SupportPhone","SupportURL","Line1","Logo")
     $KeyValues = @(
-        "Example Company",
+        "helpme!group - PC Help IT GmbH & Co. KG",
         "Montag bis Freitag, 08:00 - 17:00 Uhr",
         "+49 000 000000",
         "http://www.helpme.de",
